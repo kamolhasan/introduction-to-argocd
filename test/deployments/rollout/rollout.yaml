@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: my-app-container
-          image: nginx:1.17.0
+          image: nginx:1.18.0
           ports:
             - containerPort: 80
   strategy:
