@@ -65,6 +65,22 @@
   - `argocd-repo-server`: Fetches and processes Git repository manifests for the Application Controller.
   - `argocd-server`: Provides the ArgoCD API and web interface for user interaction.
 
+- Install Argo Rollout: https://argo-rollouts.readthedocs.io/en/stable/installation/
+
+  ```bash
+  kubectl create namespace argo-rollouts
+
+  kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+  ```
+
+  Make sure that all pods are running:
+
+  ```bash
+  $ kubectl get pods -n argo-rollouts
+  NAME                             READY   STATUS    RESTARTS   AGE
+  argo-rollouts-6cc5ff545b-crr2g   1/1     Running   0          43s
+  ```
+
 - ArgoCD UI:
 
   port-forward `argocd-server` at local port:8080, and keep the connection alive:
@@ -82,3 +98,10 @@
     ```bash
     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
     ```
+
+## Demo
+
+- Create a simple deployment.yaml
+- Replace deployment by rollout object
+- Use Argo Application to watch any changes on rollout object
+- Watch application with another application
